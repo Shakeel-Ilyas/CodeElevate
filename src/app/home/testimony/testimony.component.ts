@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [NgFor],
   templateUrl: './testimony.component.html',
-  styleUrl: './testimony.component.css'
+  styleUrl: './testimony.component.css',
 })
 export class TestimonyComponent {
-
-  testimonials: string[] = ['Avery Holmes', 'Craig Ramirez', 'Landon Stephens', 'Leah Ward'];
-
+  testimonials: string[] = [
+    'Avery Holmes',
+    'Craig Ramirez',
+    'Landon Stephens',
+    'Leah Ward',
+  ];
 }

@@ -1,8 +1,8 @@
-# Project Name 'angular-routing'
+# Project Name 'CodeElevate'
 
 This Angular practice project implements routing, authentication with login/logout functionality, and protects certain routes using route guards. It also includes a dynamic search feature that allows users to filter courses by name. The project highlights Angular's routing, guards, and reactive form handling.
 
-# AngularRouting
+# CodeElevate
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
 

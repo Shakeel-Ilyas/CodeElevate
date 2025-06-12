@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IDeactivateComponent } from '../Services/authguard.service'
 
 @Component({
   selector: 'app-contact',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrl: './contact.component.css',
 })
-export class ContactComponent implements IDeactivateComponent{
+export class ContactComponent implements DoCheck {
   firstName: string = '';
   lastName: string = '';
   country: string = '';
@@ -17,13 +16,25 @@ export class ContactComponent implements IDeactivateComponent{
 
   isSubmitted: boolean = false;
 
-  OnSubmit(){
-    this.isSubmitted = true;
+  ngDoCheck(): void {
+    this.isSubmitted = false;
   }
 
-  canExit(){
-    if((this.firstName || this.lastName || this.message) && !this.isSubmitted){
-     return confirm('You have unsaved changes. Do you want to navigate away?')
+  OnSubmit() {
+    this.isSubmitted = true;
+
+    this.firstName = '';
+    this.lastName = '';
+    this.country = '';
+    this.message = '';
+  }
+
+  canExit() {
+    if (
+      (this.firstName || this.lastName || this.country || this.message) &&
+      !this.isSubmitted
+    ) {
+      return confirm('You have unsaved changes. Do you want to navigate away?');
     } else {
       return true;
     }

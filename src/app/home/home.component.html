@@ -16,6 +16,8 @@
   </section>
 
   <section id="contact">
-    <app-contact-us></app-contact-us>
+    <app-contact-us
+      (formFieldsValueEvent)="updateFormFieldsValue($event)"
+    ></app-contact-us>
   </section>
 </div>

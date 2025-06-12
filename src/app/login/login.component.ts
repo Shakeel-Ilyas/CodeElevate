@@ -1,49 +1,49 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { AuthService } from '../Services/auth-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
-export class LoginComponent implements OnInit{
-
+export class LoginComponent implements OnInit {
   @ViewChild('username') username: ElementRef;
   @ViewChild('password') password: ElementRef;
 
-  authService: AuthService = inject(AuthService)
+  authService: AuthService = inject(AuthService);
   router: Router = inject(Router);
-  activeRoute: ActivatedRoute = inject(ActivatedRoute)
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
 
-
-  ngOnInit(){
-    this.activeRoute.queryParamMap.subscribe((queries) =>{
+  ngOnInit() {
+    this.activeRoute.queryParamMap.subscribe((queries) => {
       const logout = Boolean(queries.get('logout'));
-      
-      if(logout){
+
+      if (logout) {
         this.authService.logout();
       }
-    })
+    });
   }
-  
 
-  OnLoginClicked(){
+  OnLoginClicked() {
+    const username = this.username.nativeElement.value;
+    const password = this.password.nativeElement.value;
 
-     const username = this.username.nativeElement.value;
-     const password = this.password.nativeElement.value;
-
-    
     const user = this.authService.logIn(username, password);
 
-    if(user === undefined){
+    if (user === undefined) {
       alert('The Login credentials you have entered is not correct');
     } else {
       alert('Welcome ' + user.name + '. You are logged In.');
-      this.router.navigate(['/Courses'])
+      this.router.navigate(['/Courses']);
     }
   }
-
 }

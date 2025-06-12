@@ -1,11 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from '@angular/router';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { CoursesComponent } from './courses/courses.component';
 import { FooterComponent } from './footer/footer.component';
-import { ContactComponent } from './contact/contact.component';
-import { HomeComponent } from './home/home.component';
-import { NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +19,6 @@ import { NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-
   title = 'angular-routing';
 
   showLoader: boolean = false;
@@ -24,13 +27,16 @@ export class AppComponent {
 
   ngOnInit() {
     this.router.events.subscribe((routerEvent: any) => {
-      if(routerEvent instanceof NavigationStart){
+      if (routerEvent instanceof NavigationStart) {
         this.showLoader = true;
       }
-      if(routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel || routerEvent instanceof NavigationError){
+      if (
+        routerEvent instanceof NavigationEnd ||
+        routerEvent instanceof NavigationCancel ||
+        routerEvent instanceof NavigationError
+      ) {
         this.showLoader = false;
       }
-
     });
   }
 }

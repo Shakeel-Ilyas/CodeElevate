@@ -7,16 +7,13 @@ import { ServicesService } from '../../Services/services.service';
   standalone: true,
   imports: [NgFor],
   templateUrl: './services.component.html',
-  styleUrl: './services.component.css'
+  styleUrl: './services.component.css',
 })
-export class ServicesComponent implements OnInit{
-
-
+export class ServicesComponent implements OnInit {
   servicesService = inject(ServicesService);
-  services: {title: string, image: string, description: string}[] = [];
+  services: { title: string; image: string; description: string }[] = [];
 
-  ngOnInit(){
-      this.services = this.servicesService.services;
-}
-
+  ngOnInit() {
+    this.services = this.servicesService.services;
+  }
 }
